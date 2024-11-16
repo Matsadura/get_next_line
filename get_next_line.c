@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/16 15:30:45 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/16 17:16:34 by zzaoui           ###   ########.fr       */
+/*   Created: 2024/11/16 15:33:44 by zzaoui            #+#    #+#             */
+/*   Updated: 2024/11/16 17:13:28 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFFER_SIZE 42
+#include "get_next_line.h"
 
-# include <unistd.h>
-# include <fcntl.h>
+char	*get_next_line(int fd)
+{
+	static char	buff[999999];
+	static int	cursor;
+	int			readed;
+	char		*line;
 
-char	*ft_strndup(char *buff, int start, int finish);
-char	*ft_find_line(char *buff, int *cursor);
-#endif /* GET_NEXT_LINE_H */
+	readed = read(fd, &buff[cursor], BUFFER_SIZE);
+	line = ft_find_line(buff, &cursor);
+	return (line);
+}
