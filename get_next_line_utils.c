@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:25:02 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/16 17:11:54 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/16 18:02:12 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,20 @@ char	*ft_strndup(char *buff, int start, int finish)
  * @cursor: the cursor of the current \n
  * Return: the line
  */
-char	*ft_find_line(char *buff, int *cursor)
+char	*ft_find_line(char *buff, int *cursor, int readed)
 {
 	int		i;
 	int		j;
-	char	*str;
 
 	if (buff == NULL)
 		return (NULL);
-	j = cursor;
-	i = cursor;
-	while (buff[i] != '\n' && buff[i] != EOF)
+	j = *cursor;
+	i = *cursor;
+	while (buff[i] != '\n' && buff[i] != EOF && i < *cursor + readed)
 		i++;
-	*cursor = i;
-	return (ft_strndup(buff, j, cursor));
+	printf("[CURSOR] = {%d}\n", i);
+	*cursor = i + 1;
+
+	return (ft_strndup(buff, j, *cursor));
+
 }
