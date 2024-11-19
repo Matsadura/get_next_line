@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:25:02 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/19 11:54:41 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/19 21:39:26 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	i;
 	size_t	j;
 
-	if (s1 == NULL || s2 == NULL)
+	if (s2 == NULL)
 		return (NULL);
+	if (s1 == NULL)
+		return (ft_strndup((char *)s2, 0, ft_strlen(s2)));
 	str = (char *) malloc (ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (str == NULL)
 		return (NULL);
@@ -97,18 +99,16 @@ char	*ft_find_line(char **buff, int readed)
 //
 //	return (ft_strndup(buff, j, *cursor));
 	(void) readed;
-	int	i;
 	int	j;
 	char	*new_buff;
 
 	if (buff == NULL)
 		return (NULL);
-	i = 0;
 	j = 0;
-	printf("FIND_LINE BUFF: %s\n", *buff);
+//	printf("FIND_LINE BUFF: %s\n", *buff);
 	while ((*buff)[j] != '\n' && (*buff)[j] != EOF)
 	{
-		printf("%c - ", (*buff)[j]);
+//		printf("%c - ", (*buff)[j]);
 		j++;
 	}
 	while ((*buff)[j] == '\n')
@@ -119,8 +119,8 @@ char	*ft_find_line(char **buff, int readed)
 //	*buff = *(buff)[readed - j];
 //	memmove(*buff, *(buff) + j, ft_strlen(*buff) - j);
 //	(*buff)[ft_strlen(*buff) - j] = '\0';
-	printf("STRLEN:::: %zu\n", ft_strlen(*buff));
-	printf("{MOVED BUFF}: %s\n", *buff);
+//	printf("STRLEN:::: %zu\n", ft_strlen(*buff));
+//	printf("{MOVED BUFF}: %s\n", *buff);
 	return (new_buff);
 }
 

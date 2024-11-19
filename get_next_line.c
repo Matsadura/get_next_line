@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 15:33:44 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/19 00:44:02 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/19 21:36:14 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*buff = "";
+	static char	*buff = NULL;
 	char	*read_buff;
 	int		count_read;
 	char	*line;
@@ -23,14 +23,16 @@ char	*get_next_line(int fd)
 	if (read_buff == NULL)
 		return (NULL);
 	count_read = read(fd, read_buff, BUFFER_SIZE);
-	printf("COUNT READ: %d\n", count_read);
-	printf("READ BUFF: %s\n", read_buff);
+	if (count_read < 0)
+		return (NULL);
+	//printf("COUNT READ: %d\n", count_read);
+	//printf("READ BUFF: %s\n", read_buff);
 	read_buff[count_read] = '\0';
 	buff = ft_strjoin(buff, read_buff);
-	printf("BUFF: %s\n", buff);
-	//free(read_buff);
+	//printf("BUFF: %s\n", buff);
+	free(read_buff);
 	line = ft_find_line(&buff, count_read);
-	printf("LINE: %s\n", line);
+	//printf("LINE: %s\n", line);
 	return (line);
 }
 
