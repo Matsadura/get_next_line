@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:25:02 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/19 21:39:26 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/20 13:56:29 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ char	*ft_strndup(char *buff, int start, int finish)
 	char	*str;
 	int		i;
 
-	if (buff == NULL)
+	if (buff == NULL || start >= finish)
 		return (NULL);
-	str = (char *) malloc(finish - start + 1);
+	str = (char *) malloc(finish - start + 2);
 	if (str == NULL)
 		return (NULL);
 	i = 0;
-	while (i + start < finish)
+	while (i < finish - start)
 	{
 		str[i] = buff[start + i];
 		i++;
@@ -46,13 +46,13 @@ char	*ft_strndup(char *buff, int start, int finish)
  * @s2: the suffix string
  * Return: The new string, NULL otherwise.
  */
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*str;
 	size_t	i;
 	size_t	j;
 
-	if (s2 == NULL)
+	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	if (s1 == NULL)
 		return (ft_strndup((char *)s2, 0, ft_strlen(s2)));
@@ -73,6 +73,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	str[i] = '\0';
+	free(s1);
 	return (str);
 }
 
@@ -82,45 +83,26 @@ char	*ft_strjoin(char const *s1, char const *s2)
  * @cursor: the cursor of the current \n
  * Return: the line
  */
-//char	*ft_find_line(char *buff, int *cursor, int readed)
 char	*ft_find_line(char **buff, int readed)
 {
-//	int		i;
-//	int		j;
-//
-//	if (buff == NULL)
-//		return (NULL);
-//	j = *cursor;
-//	i = *cursor;
-//	while (buff[i] != '\n' && buff[i] != EOF && i < *cursor + readed)
-//		i++;
-//	printf("[CURSOR] = {%d}\n", i);
-//	*cursor = i + 1;
-//
-//	return (ft_strndup(buff, j, *cursor));
-	(void) readed;
-	int	j;
+	int		j;
 	char	*new_buff;
 
-	if (buff == NULL)
+	(void) readed;
+	if (*buff == NULL || **buff == '\0')
 		return (NULL);
 	j = 0;
-//	printf("FIND_LINE BUFF: %s\n", *buff);
-	while ((*buff)[j] != '\n' && (*buff)[j] != EOF)
-	{
-//		printf("%c - ", (*buff)[j]);
+	while ((*buff)[j] != '\n' && (*buff)[j] != '\0')
 		j++;
-	}
-	while ((*buff)[j] == '\n')
+	new_buff = ft_strndup(*buff, 0, j + ((*buff)[j] == '\n'));
+	if ((*buff)[j] == '\n')
 		j++;
-	new_buff = ft_strndup(*buff, 0, j);
 	memmove(*buff, *buff + j, ft_strlen(*buff) - j + 1);
-
-//	*buff = *(buff)[readed - j];
-//	memmove(*buff, *(buff) + j, ft_strlen(*buff) - j);
-//	(*buff)[ft_strlen(*buff) - j] = '\0';
-//	printf("STRLEN:::: %zu\n", ft_strlen(*buff));
-//	printf("{MOVED BUFF}: %s\n", *buff);
+	if (**buff == '\0')
+	{
+		free(*buff);
+		*buff = NULL;
+	}
 	return (new_buff);
 }
 
