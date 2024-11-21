@@ -6,11 +6,37 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:25:02 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/21 19:04:00 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/21 21:06:19 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/**
+ * ft_strdup - Duplicate a string
+ * @s: The string
+ * Return: A pointer to a new string which is a duplicate
+ *	of the string s.
+ */
+char	*ft_strdup(const char *s)
+{
+	int		i;
+	char	*str;
+
+	if (s == NULL)
+		return (NULL);
+	str = (char *) malloc(ft_strlen(s) + 1);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
 
 /**
  * ft_strndup - duplicates a string
@@ -37,6 +63,41 @@ char	*ft_strndup(char *buff, int start, int finish)
 	}
 	str[i] = '\0';
 	return (str);
+}
+
+/**
+ * ft_memmove - copy byte string
+ * @dst: the string to copy to
+ * @src: the string to copy from
+ * Return: the originql vqlue of dst
+ */
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t	i;
+	char	*tmp1;
+	char	*tmp2;
+
+	if (dst == NULL && src == NULL)
+		return (dst);
+	if (dst == src)
+		return (dst);
+	tmp1 = (char *) dst;
+	tmp2 = (char *) src;
+	if (tmp1 > tmp2)
+	{
+		while (len-- > 0)
+			tmp1[len] = tmp2[len];
+	}
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			tmp1[i] = tmp2[i];
+			i++;
+		}
+	}
+	return (dst);
 }
 
 /**
@@ -99,6 +160,7 @@ char	*ft_find_line(char **buff, int readed)
 	if ((*buff)[j] == '\n')
 		j++;
 	tmp = strdup(*buff + j);
+	//memmove(*buff, *buff + j, ft_strlen(*buff) - j + 1);
 	free(*buff);
 	*buff = tmp;
 	return (new_buff);
