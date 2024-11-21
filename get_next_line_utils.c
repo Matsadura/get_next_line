@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:25:02 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/20 20:42:10 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/21 17:10:43 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ char	*ft_find_line(char **buff, int readed)
 {
 	int		j;
 	char	*new_buff;
+	char	*tmp;
 
 	(void) readed;
 	if (*buff == NULL || **buff == '\0')
@@ -100,12 +101,10 @@ char	*ft_find_line(char **buff, int readed)
 		return (NULL);
 	if ((*buff)[j] == '\n')
 		j++;
-	memmove(*buff, *buff + j, ft_strlen(*buff) - j + 1);
-	//if (**buff == '\0')
-	//{
-	//	free(*buff);
-	//	*buff = NULL;
-	//}
+	tmp = strdup(*buff + j);
+	free(*buff);
+	*buff = tmp;
+	//memmove(*buff, *buff + j, ft_strlen(*buff) - j + 1);
 	return (new_buff);
 }
 
