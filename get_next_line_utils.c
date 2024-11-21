@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:25:02 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/21 17:10:43 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/21 19:04:00 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ char	*ft_strndup(char *buff, int start, int finish)
 char	*ft_strjoin(char *s1, char const *s2)
 {
 	char	*str;
-	size_t		(i),	(j),	(len1),	(len2);
-	//size_t	j;
-	//size_t	len1;
-	//size_t	len2;
 
+	unsigned int (i), (j), (len1), (len2);
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	len2 = ft_strlen(s2);
@@ -104,7 +101,6 @@ char	*ft_find_line(char **buff, int readed)
 	tmp = strdup(*buff + j);
 	free(*buff);
 	*buff = tmp;
-	//memmove(*buff, *buff + j, ft_strlen(*buff) - j + 1);
 	return (new_buff);
 }
 
