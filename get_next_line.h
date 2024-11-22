@@ -6,14 +6,15 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 15:30:45 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/20 13:05:01 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/22 18:00:42 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-//# ifndef BUFFER_SIZE
-//# define BUFFER_SIZE 42
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif /* BUFFER_SIZE */
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -23,9 +24,8 @@
 
 char	*get_next_line(int fd);
 char	*ft_strndup(char *buff, int start, int finish);
-//char	*ft_find_line(char *buff, int *cursor, int readed);
-char	*ft_find_line(char **buff, int readed);
-char    *ft_strjoin(char *s1, char const *s2);
-size_t  ft_strlen(const char *str);
+char	*ft_find_line(char **buff);
+char	*ft_strjoin(char *s1, char const *s2);
+size_t	ft_strlen(const char *str);
 
 #endif /* GET_NEXT_LINE_H */

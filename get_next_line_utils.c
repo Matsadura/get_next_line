@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:25:02 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/21 21:06:19 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/22 18:00:11 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,41 +66,6 @@ char	*ft_strndup(char *buff, int start, int finish)
 }
 
 /**
- * ft_memmove - copy byte string
- * @dst: the string to copy to
- * @src: the string to copy from
- * Return: the originql vqlue of dst
- */
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	size_t	i;
-	char	*tmp1;
-	char	*tmp2;
-
-	if (dst == NULL && src == NULL)
-		return (dst);
-	if (dst == src)
-		return (dst);
-	tmp1 = (char *) dst;
-	tmp2 = (char *) src;
-	if (tmp1 > tmp2)
-	{
-		while (len-- > 0)
-			tmp1[len] = tmp2[len];
-	}
-	else
-	{
-		i = 0;
-		while (i < len)
-		{
-			tmp1[i] = tmp2[i];
-			i++;
-		}
-	}
-	return (dst);
-}
-
-/**
  * ft_strjoin - Allocates a new string which is the result of concatenations
  *			of s1 and s2
  * @s1: the prefix string
@@ -142,28 +107,26 @@ char	*ft_strjoin(char *s1, char const *s2)
  * @cursor: the cursor of the current \n
  * Return: the line
  */
-char	*ft_find_line(char **buff, int readed)
+char	*ft_find_line(char **buff)
 {
 	int		j;
-	char	*new_buff;
+	char	*line;
 	char	*tmp;
 
-	(void) readed;
 	if (*buff == NULL || **buff == '\0')
 		return (NULL);
 	j = 0;
 	while ((*buff)[j] != '\n' && (*buff)[j] != '\0')
 		j++;
-	new_buff = ft_strndup(*buff, 0, j + ((*buff)[j] == '\n'));
-	if (!new_buff)
+	line = ft_strndup(*buff, 0, j + ((*buff)[j] == '\n'));
+	if (line == NULL)
 		return (NULL);
 	if ((*buff)[j] == '\n')
 		j++;
-	tmp = strdup(*buff + j);
-	//memmove(*buff, *buff + j, ft_strlen(*buff) - j + 1);
+	tmp = ft_strdup(*buff + j);
 	free(*buff);
 	*buff = tmp;
-	return (new_buff);
+	return (line);
 }
 
 /**
