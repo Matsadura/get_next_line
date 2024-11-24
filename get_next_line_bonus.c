@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 11:27:26 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/24 15:19:31 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/24 15:24:22 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ char	*get_next_line(int fd)
 		free(buffers[fd]);
 		buffers[fd] = NULL;
 	}
+	free(read_buff);
 	return (line);
 }
