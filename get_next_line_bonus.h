@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 11:28:26 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/24 12:20:49 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/24 14:53:16 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif /* BUFFER_SIZE */
+# ifndef FD_SETSIZE
+#  define FD_SETSIZE 1024
+# endif /* FD_SETSIZE */
 # define MAX_FD FD_SETSIZE
 
 # include <stdlib.h>
