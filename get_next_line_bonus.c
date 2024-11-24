@@ -6,7 +6,7 @@
 /*   By: zzaoui <zzaoui@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 11:27:26 by zzaoui            #+#    #+#             */
-/*   Updated: 2024/11/24 12:22:49 by zzaoui           ###   ########.fr       */
+/*   Updated: 2024/11/24 13:18:27 by zzaoui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*handle_buffer(char **buff, char **read_buff, int count_read, int fd)
  */
 char	*get_next_line(int fd)
 {
-	static char	*buffers[99];
+	static char	*buffers[MAX_FD];
 	char		*read_buff;
 	char		*line;
 	int			count_read;
